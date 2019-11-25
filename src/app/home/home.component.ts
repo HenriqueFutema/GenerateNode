@@ -12,9 +12,10 @@ export class HomeComponent implements OnInit {
   constructor(private apiSevice: ApiService, private sanitizer: DomSanitizer) {}
 
   arraysType: any = [{ name: "id", type: "Number" }];
-  inpFileName: String;
+  inpFileName: String = "";
   inpName: String = "";
   inpType: String = "";
+  hasError: Boolean = false;
   fileUrl: any;
 
   ngOnInit() {}
@@ -31,6 +32,25 @@ export class HomeComponent implements OnInit {
     //   .postData("generate", this.arraysType)
     //   .subscribe(val => console.log(val));
 
+    if (this.inpFileName === "") {
+      return (this.hasError = true);
+    }
+
+    let data = `const mongoose = require('mongoose'); const ${this.inpFileName}Schema = new mongoose.Schema({`;
+    this.arraysType.map(val => {
+      data = `${data} ${val.name}:{ type: ${val.type} },`;
+    });
+
+    data += `}); module.exports = mongoose.model(${this.inpFileName});`;
+
+    const blob = new Blob([data], { type: "application/octet-stream" });
+
+    this.fileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
+      window.URL.createObjectURL(blob)
+    );
+  }
+
+  handleSubmitController() {
     let data = `const mongoose = require('mongoose'); const ${this.inpFileName}Schema = new mongoose.Schema({`;
     this.arraysType.map(val => {
       data = `${data} ${val.name}:{ type: ${val.type} },`;

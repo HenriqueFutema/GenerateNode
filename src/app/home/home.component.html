@@ -5,6 +5,7 @@
       [(ngModel)]="inpFileName"
       placeholder="File Name"
       class="m-4"
+      [ngClass]="{ 'border border-danger': hasError }"
     />
     <div *ngFor="let input of arraysType" class="m-4" class="col-12">
       <input
@@ -38,8 +39,8 @@
 
     <a
       [href]="fileUrl"
-      download="model.txt"
-      (click)="handleSubmit()"
+      download="{{ inpFileName }}Controller.js"
+      (click)="handleSubmitController()"
       class="btn btn-primary my-1 mx-2 "
       >Download Controller</a
     >
