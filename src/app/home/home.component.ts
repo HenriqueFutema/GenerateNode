@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
     ];
   }
 
-  handleSubmit() {
+  handleSubmitModel() {
     // this.apiSevice
     //   .postData("generate", this.arraysType)
     //   .subscribe(val => console.log(val));
