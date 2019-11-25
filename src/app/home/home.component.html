@@ -1,0 +1,47 @@
+<div class="container-fluid">
+  <div class="row m-4">
+    <input
+      type="text"
+      [(ngModel)]="inpFileName"
+      placeholder="File Name"
+      class="m-4"
+    />
+    <div *ngFor="let input of arraysType" class="m-4" class="col-12">
+      <input
+        type="text"
+        class="form-control"
+        class="my-1 mx-2 col-4"
+        placeholder="name"
+        [value]="input.name"
+        (input)="input.name = $event.target.value"
+      />
+      <input
+        type="text"
+        class="form-control"
+        class="my-1 col-4"
+        placeholder="type"
+        [value]="input.type"
+        (input)="input.type = $event.target.value"
+      />
+    </div>
+
+    <button (click)="handleAddInput()" class="btn btn-primary my-1 mx-2 ">
+      Add
+    </button>
+    <a
+      [href]="fileUrl"
+      download="{{ inpFileName }}.js"
+      (click)="handleSubmit()"
+      class="btn btn-primary my-1 mx-2 "
+      >Download Model</a
+    >
+
+    <a
+      [href]="fileUrl"
+      download="model.txt"
+      (click)="handleSubmit()"
+      class="btn btn-primary my-1 mx-2 "
+      >Download Controller</a
+    >
+  </div>
+</div>
