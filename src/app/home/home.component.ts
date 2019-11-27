@@ -3,18 +3,24 @@ import { DomSanitizer } from "@angular/platform-browser";
 
 import { ApiService } from "../api.service";
 
+//import { DataObject } from "../models/data.model";
+
 @Component({
   selector: "app-home",
   templateUrl: "./home.component.html",
   styleUrls: ["./home.component.css"]
 })
 export class HomeComponent implements OnInit {
-  constructor(private apiSevice: ApiService, private sanitizer: DomSanitizer) {}
+  constructor(
+    private apiSevice: ApiService,
+    private sanitizer: DomSanitizer //private dataObject: DataObject
+  ) {}
 
-  arraysType: any = [{ name: "id", type: "Number" }];
+  arraysType: any = [{ name: "id", type: "Number", required: true }];
   inpFileName: String = "";
   inpName: String = "";
   inpType: String = "";
+  checkRequired: boolean = false;
   hasError: Boolean = false;
   fileUrl: any;
   methodsController: Array<String> = ["store", "index", "update", "destroy"];
@@ -24,8 +30,9 @@ export class HomeComponent implements OnInit {
   handleAddInput() {
     this.arraysType = [
       ...this.arraysType,
-      { name: this.inpName, type: this.inpType }
+      { name: this.inpName, type: this.inpType, required: this.checkRequired }
     ];
+    console.log(this.arraysType);
   }
 
   handleSubmitModel() {
@@ -39,7 +46,7 @@ export class HomeComponent implements OnInit {
 
     let data = `const mongoose = require('mongoose'); const ${this.inpFileName}Schema = new mongoose.Schema({`;
     this.arraysType.map(val => {
-      data = `${data} ${val.name}:{ type: ${val.type} },`;
+      data = `${data} ${val.name}:{ type: ${val.type}, required: ${val.required} },`;
     });
 
     data += `}); module.exports = mongoose.model(${this.inpFileName});`;

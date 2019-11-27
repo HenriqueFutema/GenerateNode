@@ -8,22 +8,33 @@
       [ngClass]="{ 'border border-danger': hasError }"
     />
     <div *ngFor="let input of arraysType" class="m-4" class="col-12">
-      <input
-        type="text"
-        class="form-control"
-        class="my-1 mx-2 col-4"
-        placeholder="name"
-        [value]="input.name"
-        (input)="input.name = $event.target.value"
-      />
-      <input
-        type="text"
-        class="form-control"
-        class="my-1 col-4"
-        placeholder="type"
-        [value]="input.type"
-        (input)="input.type = $event.target.value"
-      />
+      <div class="row">
+        <input
+          type="text"
+          class="form-control"
+          class="my-1 mx-2 col-4"
+          placeholder="name"
+          [value]="input.name"
+          (input)="input.name = $event.target.value"
+        />
+        <input
+          type="text"
+          class="form-control"
+          class="my-1 col-4"
+          placeholder="type"
+          [value]="input.type"
+          (input)="input.type = $event.target.value"
+        />
+        <div class="col-1">
+          <label>Required</label>
+          <input
+            type="checkbox"
+            [value]="input.required"
+            (input)="input.required = $event.target.checked"
+            id="require"
+          />
+        </div>
+      </div>
     </div>
 
     <button (click)="handleAddInput()" class="btn btn-primary my-1 mx-2 ">

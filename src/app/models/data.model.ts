@@ -1,6 +1,4 @@
-export interface DataObjects {
+export interface DataObject {
   name: String;
   type: String;
 }
-
-export type Data = [DataObjects];
