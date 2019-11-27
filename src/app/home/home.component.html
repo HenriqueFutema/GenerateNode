@@ -40,6 +40,12 @@
     <button (click)="handleAddInput()" class="btn btn-primary my-1 mx-2 ">
       Add
     </button>
+    <button
+      (click)="handleRemoveInput()"
+      class="btn btn-danger my-1 mx-2 rounded"
+    >
+      X
+    </button>
     <a
       [href]="fileUrl"
       download="{{ inpFileName }}.js"

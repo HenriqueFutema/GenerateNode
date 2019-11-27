@@ -28,11 +28,14 @@ export class HomeComponent implements OnInit {
   ngOnInit() {}
 
   handleAddInput() {
-    this.arraysType = [
+    return (this.arraysType = [
       ...this.arraysType,
       { name: this.inpName, type: this.inpType, required: this.checkRequired }
-    ];
-    console.log(this.arraysType);
+    ]);
+  }
+
+  handleRemoveInput() {
+    return this.arraysType.pop();
   }
 
   handleSubmitModel() {
@@ -53,9 +56,9 @@ export class HomeComponent implements OnInit {
 
     const blob = new Blob([data], { type: "application/octet-stream" });
 
-    this.fileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
+    return (this.fileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
       window.URL.createObjectURL(blob)
-    );
+    ));
   }
 
   handleSubmitController() {
@@ -85,8 +88,8 @@ export class HomeComponent implements OnInit {
 
     const blob = new Blob([data], { type: "application/octet-stream" });
 
-    this.fileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
+    return (this.fileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
       window.URL.createObjectURL(blob)
-    );
+    ));
   }
 }
