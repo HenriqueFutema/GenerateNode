@@ -52,7 +52,7 @@ export class HomeComponent implements OnInit {
       data = `${data} ${val.name}:{ type: ${val.type}, required: ${val.required} },`;
     });
 
-    data += `}); module.exports = mongoose.model(${this.inpFileName});`;
+    data += `}); module.exports = mongoose.model("${this.inpFileName}", ${this.inpFileName}Schema);`;
 
     const blob = new Blob([data], { type: "application/octet-stream" });
 
@@ -84,7 +84,7 @@ export class HomeComponent implements OnInit {
     //DELETE
     data += `async ${
       methodsController[3]
-    }(req, res){ const ${inpFileName.toLowerCase()} = await ${inpFileName}.findByIdAndDelete(req.params.id, req.body, { new: true }); return res.json({ ok: true }) }}`;
+    }(req, res){ const ${inpFileName.toLowerCase()} = await ${inpFileName}.findByIdAndDelete(req.params.id); return res.json({ ok: true }) }}`;
 
     const blob = new Blob([data], { type: "application/octet-stream" });
 
