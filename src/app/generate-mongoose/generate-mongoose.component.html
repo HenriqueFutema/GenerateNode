@@ -21,11 +21,21 @@
     <a
       type="submit"
       class="btn btn-primary col-12 my-2"
-      (click)="handleSubmit()"
+      (click)="handleSubmitConfig()"
       [href]="fileUrl"
       download="database.js"
     >
-      Download
+      Download DBConfig
+    </a>
+
+    <a
+      type="submit"
+      class="btn btn-primary col-12 my-2"
+      (click)="handleSubmitServer()"
+      [href]="fileUrl"
+      download="app.js"
+    >
+      Download App
     </a>
   </form>
 </div>

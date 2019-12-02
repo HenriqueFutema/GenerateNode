@@ -25,13 +25,29 @@ export class GenerateMongooseComponent implements OnInit {
     });
   }
 
-  handleSubmit() {
+  handleSubmitConfig() {
     const formValue = this.formC.getRawValue();
 
     let baseUrl = `${formValue.userName}:${formValue.password}`;
     let urlReplaced = formValue.url.replace("<dbuser>:<dbpassword>", baseUrl);
 
     let data = `module.exports={ baseUrl: "${urlReplaced}" };`;
+    const blob = new Blob([data], { type: "application/octet-stream" });
+
+    return (this.fileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
+      window.URL.createObjectURL(blob)
+    ));
+  }
+
+  handleSubmitServer() {
+    let data =
+      "const express = require('express'); const app = express();const cors = require('cors');const mongoose = require('mongoose');";
+    data +=
+      "const databaseBaseUrl = require('./config/database');mongoose.connect(databaseBaseUrl.baseUrl, {useNewUrlParser: true,useUnifiedTopology: true});";
+    data +=
+      "app.use(express.json());app.use(cors());app.use(require('./routes'));";
+    data += "app.listen(3333, () => { console.log('PORT 3333')});";
+
     const blob = new Blob([data], { type: "application/octet-stream" });
 
     return (this.fileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
