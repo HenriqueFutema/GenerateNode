@@ -1,0 +1,31 @@
+<div class="container p-3">
+  <form class="row mx-3" [formGroup]="formC">
+    <input
+      type="text"
+      class="form-control col-5 mx-1"
+      placeholder="url"
+      formControlName="url"
+    />
+    <input
+      type="text"
+      class="form-control col-3 mx-1"
+      placeholder="username"
+      formControlName="userName"
+    />
+    <input
+      type="password"
+      class="form-control col-3 mx-1"
+      placeholder="password"
+      formControlName="password"
+    />
+    <a
+      type="submit"
+      class="btn btn-primary col-12 my-2"
+      (click)="handleSubmit()"
+      [href]="fileUrl"
+      download="database.js"
+    >
+      Download
+    </a>
+  </form>
+</div>

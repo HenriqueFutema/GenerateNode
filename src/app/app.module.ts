@@ -2,6 +2,8 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
+import { RouterModule } from "@angular/router";
+import { ReactiveFormsModule } from "@angular/forms";
 
 import { ApiService } from "./api.service";
 
@@ -20,14 +22,22 @@ import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatSortModule } from "@angular/material/sort";
 import { AppMaterialModule } from "./app-material/app-material.module";
 import { HomeComponent } from "./home/home.component";
+import { GenerateMongooseComponent } from "./generate-mongoose/generate-mongoose.component";
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, HomeComponent],
+  declarations: [
+    AppComponent,
+    NavbarComponent,
+    HomeComponent,
+    GenerateMongooseComponent
+  ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     FormsModule,
+    RouterModule,
     NoopAnimationsModule,
     MatGridListModule,
     MatCardModule,
@@ -40,7 +50,7 @@ import { HomeComponent } from "./home/home.component";
     MatSortModule,
     AppMaterialModule
   ],
-  providers: [ApiService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
